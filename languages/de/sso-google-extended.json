@@ -40,6 +40,7 @@
 	"admin.layout.hide_alt_help": "Entfernt die redundante rechte Spalte auf Desktop und zentriert die Anmeldekarte.",
 	"admin.layout.apply_register": "Primären Google-Button auch auf der Registrierungsseite (/register) anwenden",
 	"admin.preview.badge": "Live-Button-Vorschau",
+	"admin.preview.local_fields": "Benutzername- & Passwortfelder",
 	"admin.policies.title": "Registrierungs- & Bestätigungsrichtlinien",
 	"admin.policies.autoconfirm": "Google-E-Mail-Adressen automatisch bestätigen",
 	"admin.policies.autoconfirm_help": "Überspringt die Aktivierungs-E-Mail, da Google die Adresse bereits verifiziert hat.",

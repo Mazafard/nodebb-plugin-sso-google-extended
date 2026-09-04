@@ -40,6 +40,7 @@
 	"admin.layout.hide_alt_help": "Removes the redundant right-hand column on desktop, cleanly centering the login card.",
 	"admin.layout.apply_register": "Apply primary Google CTA placement on Registration page (/register)",
 	"admin.preview.badge": "Live Button Preview",
+	"admin.preview.local_fields": "Username & Password Fields",
 	"admin.policies.title": "Registration & Verification Policies",
 	"admin.policies.autoconfirm": "Auto-confirm Google email addresses",
 	"admin.policies.autoconfirm_help": "Skip forum email activation since Google has already verified the account owner's email address.",

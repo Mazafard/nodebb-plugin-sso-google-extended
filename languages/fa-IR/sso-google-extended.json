@@ -40,6 +40,7 @@
 	"admin.layout.hide_alt_help": "ستون اضافه را در نسخه دسکتاپ حذف کرده و کادر ورود را دقیقاً در مرکز صفحه قرار می‌دهد.",
 	"admin.layout.apply_register": "اعمال دکمه اصلی گوگل در صفحه ثبت‌نام (/register)",
 	"admin.preview.badge": "پیش‌نمایش زنده دکمه",
+	"admin.preview.local_fields": "فیلدهای نام کاربری و رمز عبور",
 	"admin.policies.title": "سیاست‌های ثبت‌نام و تایید حساب",
 	"admin.policies.autoconfirm": "تایید خودکار آدرس‌های ایمیل گوگل",
 	"admin.policies.autoconfirm_help": "ارسال ایمیل فعال‌سازی را رد می‌کند زیرا گوگل از قبل ایمیل کاربر را تایید کرده است.",

@@ -6,7 +6,7 @@ define('admin/plugins/sso-google-extended', ['settings', 'alerts'], function (Se
 	function updateLivePreview() {
 		const position = $('#buttonPosition').val() || 'top';
 		const style = $('#buttonStyle').val() || 'google-brand';
-		const label = $('#buttonLabel').val() || 'Continue with Google';
+		const label = $('#buttonLabel option:selected').text() || $('#buttonLabel').val() || 'Continue with Google';
 
 		const previewBtn = $('#preview-google-btn');
 		const previewDivider = $('#preview-divider');
@@ -42,19 +42,19 @@ define('admin/plugins/sso-google-extended', ['settings', 'alerts'], function (Se
 			previewDivider.show();
 			previewContainer.empty().append(previewBtn, previewDivider, previewLocalFields);
 			if (previewBadge.length) {
-				previewBadge.text('Placement: Top of Form (Primary)');
+				previewBadge.text(previewBadge.data('placement-top') || 'Top of Form (Primary)');
 			}
 		} else if (position === 'before') {
 			previewDivider.hide();
 			previewContainer.empty().append(previewBtn, previewLocalFields);
 			if (previewBadge.length) {
-				previewBadge.text('Placement: Before Local Form');
+				previewBadge.text(previewBadge.data('placement-before') || 'Before Local Form');
 			}
 		} else {
 			previewDivider.show();
 			previewContainer.empty().append(previewLocalFields, previewDivider, previewBtn);
 			if (previewBadge.length) {
-				previewBadge.text('Placement: After Local Form');
+				previewBadge.text(previewBadge.data('placement-after') || 'After Local Form');
 			}
 		}
 	}
@@ -63,15 +63,19 @@ define('admin/plugins/sso-google-extended', ['settings', 'alerts'], function (Se
 		const id = ($('#app_id').val() || '').trim();
 		const secret = ($('#secret').val() || '').trim();
 		const badge = $('#sso-status-badge');
+		if (!badge.length) return;
+
+		const configuredText = badge.data('configured') || 'Active & Configured';
+		const requiredText = badge.data('required') || 'Credentials Required';
 
 		if (id && secret) {
 			badge.removeClass('bg-secondary-subtle text-secondary border-secondary-subtle bg-warning-subtle text-warning border-warning-subtle')
 				.addClass('bg-success-subtle text-success border-success-subtle')
-				.html('<i class="fa fa-check-circle me-1 small"></i> Active & Configured');
+				.html('<i class="fa fa-check-circle me-1 small"></i> ' + configuredText);
 		} else {
 			badge.removeClass('bg-secondary-subtle text-secondary border-secondary-subtle bg-success-subtle text-success border-success-subtle')
 				.addClass('bg-warning-subtle text-warning border-warning-subtle')
-				.html('<i class="fa fa-exclamation-triangle me-1 small"></i> Credentials Required');
+				.html('<i class="fa fa-exclamation-triangle me-1 small"></i> ' + requiredText);
 		}
 	}
 

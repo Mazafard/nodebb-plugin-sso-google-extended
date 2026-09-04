@@ -40,6 +40,7 @@
 	"admin.layout.hide_alt_help": "消除桌面端多余的右侧空白列，使登录卡片居中展示。",
 	"admin.layout.apply_register": "在注册页面 (/register) 同步应用 Google 首要按钮布局",
 	"admin.preview.badge": "实时按钮预览",
+	"admin.preview.local_fields": "用户名与密码输入框",
 	"admin.policies.title": "注册与验证策略",
 	"admin.policies.autoconfirm": "自动确认 Google 邮箱地址",
 	"admin.policies.autoconfirm_help": "跳过论坛邮箱激活，因为 Google 已经验证了该用户的邮箱地址。",

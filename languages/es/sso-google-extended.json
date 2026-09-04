@@ -40,6 +40,7 @@
 	"admin.layout.hide_alt_help": "Elimina la columna redundante en escritorio, centrando el formulario de inicio de sesión.",
 	"admin.layout.apply_register": "Aplicar botón principal de Google en la página de registro (/register)",
 	"admin.preview.badge": "Vista Previa en Vivo",
+	"admin.preview.local_fields": "Campos de usuario y contraseña",
 	"admin.policies.title": "Políticas de Registro y Verificación",
 	"admin.policies.autoconfirm": "Confirmar automáticamente correos de Google",
 	"admin.policies.autoconfirm_help": "Omite la activación por correo ya que Google ha verificado el email del propietario.",

@@ -36,7 +36,7 @@ Google.init = async function (data) {
 
 	hostHelpers.setupAdminPageRoute(data.router, '/admin/plugins/sso-google-extended', (req, res) => {
 		res.render('admin/plugins/sso-google-extended', {
-			title: 'Google SSO Extended',
+			title: '[[sso-google-extended:admin.header.title]]',
 			baseUrl: nconf.get('url'),
 			version: pkg.version,
 		});

@@ -40,6 +40,7 @@
 	"admin.layout.hide_alt_help": "Supprime la colonne vide sur ordinateur et centre le formulaire de connexion.",
 	"admin.layout.apply_register": "Appliquer le bouton principal Google sur la page d'inscription (/register)",
 	"admin.preview.badge": "Aperçu en direct",
+	"admin.preview.local_fields": "Champs identifiant et mot de passe",
 	"admin.policies.title": "Politiques d'inscription et de vérification",
 	"admin.policies.autoconfirm": "Confirmer automatiquement les e-mails Google",
 	"admin.policies.autoconfirm_help": "Ignore l'e-mail d'activation car Google a déjà vérifié l'adresse e-mail du compte.",
