@@ -5,7 +5,7 @@
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mazafard/nodebb-plugin-sso-google-extended"
+    "url": "git+https://github.com/Mazafard/nodebb-plugin-sso-google-extended.git"
   },
   "scripts": {
     "test": "node --check library.js"
