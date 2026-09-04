@@ -26,6 +26,7 @@ const Google = {
 		buttonStyle: 'google-brand',
 		buttonLabel: 'Continue with Google',
 		applyRegister: true,
+		hideAltLogins: true,
 	},
 };
 
@@ -64,6 +65,7 @@ Google.init = async function (data) {
 	Google.settings.buttonStyle = loadedSettings.buttonStyle || 'google-brand';
 	Google.settings.buttonLabel = loadedSettings.buttonLabel || 'Continue with Google';
 	Google.settings.applyRegister = loadedSettings.applyRegister === undefined ? true : loadedSettings.applyRegister === 'on';
+	Google.settings.hideAltLogins = loadedSettings.hideAltLogins === undefined ? true : loadedSettings.hideAltLogins === 'on';
 };
 
 Google.filterConfigGet = function (data) {
@@ -73,6 +75,7 @@ Google.filterConfigGet = function (data) {
 		buttonStyle: Google.settings.buttonStyle || 'google-brand',
 		buttonLabel: Google.settings.buttonLabel || 'Continue with Google',
 		applyRegister: Google.settings.applyRegister !== false,
+		hideAltLogins: Google.settings.hideAltLogins !== false,
 	};
 
 	return data;

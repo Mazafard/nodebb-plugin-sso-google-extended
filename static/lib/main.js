@@ -29,33 +29,66 @@
 		}
 
 		if (position === 'top') {
-			if (document.getElementById('sso-google-primary-container')) {
-				return;
+			if (!document.getElementById('sso-google-primary-container')) {
+				const container = document.createElement('div');
+				container.id = 'sso-google-primary-container';
+				container.className = 'sso-google-container';
+
+				const btn = document.createElement('a');
+				btn.href = `${config.relative_path}/auth/google`;
+				btn.className = `sso-google-btn-primary ${styleClass}`;
+				btn.setAttribute('role', 'button');
+
+				const iconSpan = document.createElement('span');
+				iconSpan.className = 'sso-google-icon';
+				iconSpan.innerHTML = GOOGLE_SVG;
+
+				const textSpan = document.createElement('span');
+				textSpan.className = 'sso-google-text';
+				textSpan.textContent = label; // Safe textContent to prevent XSS
+
+				btn.appendChild(iconSpan);
+				btn.appendChild(textSpan);
+
+				const divider = document.createElement('div');
+				divider.className = 'sso-google-divider';
+				const orSpan = document.createElement('span');
+				orSpan.textContent = 'or';
+				divider.appendChild(orSpan);
+
+				container.appendChild(btn);
+				container.appendChild(divider);
+
+				formEl.insertBefore(container, formEl.firstChild);
 			}
 
-			const container = document.createElement('div');
-			container.id = 'sso-google-primary-container';
-			container.className = 'sso-google-container';
-			container.innerHTML = `
-				<a href="${config.relative_path}/auth/google" class="sso-google-btn-primary ${styleClass}">
-					<span class="sso-google-icon">${GOOGLE_SVG}</span>
-					<span class="sso-google-text">${label}</span>
-				</a>
-				<div class="sso-google-divider">
-					<span>or</span>
-				</div>
-			`;
-
-			// Prepend to the form
-			formEl.insertBefore(container, formEl.firstChild);
-
-			// Hide duplicated Google button in the alternative login block
+			// Clean up alternative logins block on desktop and mobile
 			document.body.classList.add('sso-google-hide-alt');
-			const altBlock = document.querySelector('.alt-login-block');
+			const altBlock = document.querySelector('.alt-login-block, .alt-register-block');
 			if (altBlock) {
 				const nonGoogleAlt = altBlock.querySelectorAll('.alt-logins li:not(.google)');
-				if (nonGoogleAlt.length === 0) {
-					altBlock.style.display = 'none';
+				const shouldHideEntireColumn = nonGoogleAlt.length === 0 || ssoSettings.hideAltLogins;
+
+				if (shouldHideEntireColumn) {
+					// Hide the parent grid column wrapper completely to eliminate the "Alternative Logins" header
+					const altCol = altBlock.closest('[class*="col-"]');
+					if (altCol) {
+						altCol.style.setProperty('display', 'none', 'important');
+					} else {
+						altBlock.style.setProperty('display', 'none', 'important');
+					}
+
+					// Center and optimize the login column width on desktop
+					const formCol = formEl.closest('[class*="col-"]');
+					if (formCol) {
+						formCol.classList.add('sso-google-centered-col');
+					}
+				} else {
+					// If other SSO providers exist, just hide the Google entry from the list
+					const googleLi = altBlock.querySelector('.alt-logins li.google');
+					if (googleLi) {
+						googleLi.style.setProperty('display', 'none', 'important');
+					}
 				}
 			}
 		} else if (position === 'before') {
