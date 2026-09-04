@@ -5,6 +5,7 @@
 	"url": "https://github.com/Mazafard/nodebb-plugin-sso-google-extended",
 	"library": "./library.js",
 	"templates": "templates",
+	"languages": "languages",
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:config.get", "method": "filterConfigGet" },
