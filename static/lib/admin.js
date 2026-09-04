@@ -1,0 +1,33 @@
+'use strict';
+
+define('admin/plugins/sso-google-extended', ['settings', 'alerts', 'modals'], function (Settings, alerts, modals) {
+	const ACP = {};
+
+	ACP.init = function () {
+		Settings.load('sso-google-extended', $('.sso-google-settings'));
+
+		$('#save').on('click', function () {
+			Settings.save('sso-google-extended', $('.sso-google-settings'), function () {
+				alerts.alert({
+					type: 'success',
+					alert_id: 'sso-google-extended-saved',
+					title: 'Settings Saved',
+					message: 'Please rebuild and restart your NodeBB to apply these settings, or click on this alert to do so.',
+					clickfn: function () {
+						socket.emit('admin.reload');
+					},
+				});
+			});
+		});
+
+		$('a[data-action="help-credentials"]').on('click', function () {
+			modals.alert({
+				title: 'Where is the Credentials page?',
+				message: `<img src="${config.relative_path}/plugins/nodebb-plugin-sso-google-extended/images/credentials.png" />`,
+			});
+			return false;
+		});
+	};
+
+	return ACP;
+});

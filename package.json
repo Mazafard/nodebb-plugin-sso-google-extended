@@ -1,0 +1,35 @@
+{
+  "name": "nodebb-plugin-sso-google-extended",
+  "version": "1.0.0",
+  "description": "Extended NodeBB Google SSO plugin with primary login placement, modern Google Identity design, and NodeBB v4 support.",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mazafard/nodebb-plugin-sso-google-extended"
+  },
+  "scripts": {
+    "test": "node --check library.js"
+  },
+  "keywords": [
+    "nodebb",
+    "nodebb-plugin",
+    "google",
+    "sso",
+    "oauth2",
+    "login",
+    "google-identity",
+    "authentication",
+    "registration"
+  ],
+  "author": "Mazafard",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Mazafard/nodebb-plugin-sso-google-extended/issues"
+  },
+  "dependencies": {
+    "passport-google-oauth20": "^1.0.0"
+  },
+  "nbbpm": {
+    "compatibility": "^4.0.0"
+  }
+}
