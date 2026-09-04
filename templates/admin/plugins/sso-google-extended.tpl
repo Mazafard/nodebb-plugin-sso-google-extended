@@ -146,7 +146,7 @@
 										<i class="fa fa-eye me-1"></i> Live Button Preview
 									</span>
 								</div>
-								<div class="p-3 bg-body rounded-3 shadow-sm border">
+								<div id="preview-layout-container" class="p-3 bg-body rounded-3 shadow-sm border d-flex flex-column gap-2">
 									<div id="preview-google-btn" class="sso-google-btn-primary google-brand text-center justify-content-center d-flex align-items-center gap-2">
 										<span class="sso-google-icon">
 											<svg viewBox="0 0 48 48" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -159,12 +159,17 @@
 										</span>
 										<span id="preview-google-text" class="fw-semibold">Continue with Google</span>
 									</div>
-									<div class="sso-google-divider my-2">
+									<div id="preview-divider" class="sso-google-divider my-2">
 										<span>or</span>
 									</div>
-									<div class="text-center text-muted small py-1 bg-body-secondary rounded">
-										Username & Password Fields
+									<div id="preview-local-fields" class="text-center text-muted small py-2 bg-body-secondary rounded border border-dashed">
+										<i class="fa fa-lock me-1"></i> Username & Password Fields
 									</div>
+								</div>
+								<div class="text-center mt-2">
+									<span id="preview-status-pill" class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill small">
+										Placement: Top of Form (Primary)
+									</span>
 								</div>
 							</div>
 						</div>
@@ -193,3 +198,96 @@
 		</div>
 	</div>
 </div>
+
+<script>
+(function () {
+	function initPreviewHandlers() {
+		function updateLivePreview() {
+			var position = $('#buttonPosition').val() || 'top';
+			var style = $('#buttonStyle').val() || 'google-brand';
+			var label = $('#buttonLabel').val() || 'Continue with Google';
+
+			var previewBtn = $('#preview-google-btn');
+			var previewDivider = $('#preview-divider');
+			var previewLocalFields = $('#preview-local-fields');
+			var previewContainer = $('#preview-layout-container');
+			var previewBadge = $('#preview-status-pill');
+
+			if (!previewBtn.length || !previewContainer.length) {
+				return;
+			}
+
+			$('#preview-google-text').text(label);
+
+			if (style === 'standard') {
+				previewBtn.removeClass('google-brand').addClass('standard');
+				previewBtn.css({
+					'background-color': 'var(--bs-primary, #0d6efd)',
+					'color': '#ffffff',
+					'border': '1px solid var(--bs-primary, #0d6efd)',
+					'box-shadow': '0 1px 3px rgba(0, 0, 0, 0.1)'
+				});
+			} else {
+				previewBtn.removeClass('standard').addClass('google-brand');
+				previewBtn.css({
+					'background-color': '#ffffff',
+					'color': '#3c4043',
+					'border': '1px solid #dadce0',
+					'box-shadow': '0 1px 2px 0 rgba(60, 64, 67, 0.12), 0 1px 3px 1px rgba(60, 64, 67, 0.08)'
+				});
+			}
+
+			if (position === 'top') {
+				previewDivider.show();
+				previewContainer.empty().append(previewBtn, previewDivider, previewLocalFields);
+				if (previewBadge.length) {
+					previewBadge.text('Placement: Top of Form (Primary)');
+				}
+			} else if (position === 'before') {
+				previewDivider.hide();
+				previewContainer.empty().append(previewBtn, previewLocalFields);
+				if (previewBadge.length) {
+					previewBadge.text('Placement: Before Local Form');
+				}
+			} else {
+				previewDivider.show();
+				previewContainer.empty().append(previewLocalFields, previewDivider, previewBtn);
+				if (previewBadge.length) {
+					previewBadge.text('Placement: After Local Form');
+				}
+			}
+		}
+
+		function updateStatusBadge() {
+			var id = ($('#app_id').val() || '').trim();
+			var secret = ($('#secret').val() || '').trim();
+			var badge = $('#sso-status-badge');
+
+			if (id && secret) {
+				badge.removeClass('bg-secondary-subtle text-secondary border-secondary-subtle bg-warning-subtle text-warning border-warning-subtle')
+					.addClass('bg-success-subtle text-success border-success-subtle')
+					.html('<i class="fa fa-check-circle me-1 small"></i> Active & Configured');
+			} else {
+				badge.removeClass('bg-secondary-subtle text-secondary border-secondary-subtle bg-success-subtle text-success border-success-subtle')
+					.addClass('bg-warning-subtle text-warning border-warning-subtle')
+					.html('<i class="fa fa-exclamation-triangle me-1 small"></i> Credentials Required');
+			}
+		}
+
+		$(document).off('change input', '#buttonPosition, #buttonStyle, #buttonLabel, #hideAltLogins')
+			.on('change input', '#buttonPosition, #buttonStyle, #buttonLabel, #hideAltLogins', updateLivePreview);
+
+		$(document).off('input change', '#app_id, #secret')
+			.on('input change', '#app_id, #secret', updateStatusBadge);
+
+		updateLivePreview();
+		updateStatusBadge();
+	}
+
+	if (window.$) {
+		$(initPreviewHandlers);
+	} else {
+		document.addEventListener('DOMContentLoaded', initPreviewHandlers);
+	}
+})();
+</script>
