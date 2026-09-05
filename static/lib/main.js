@@ -38,6 +38,8 @@
 				btn.href = `${config.relative_path}/auth/google`;
 				btn.className = `sso-google-btn-primary ${styleClass}`;
 				btn.setAttribute('role', 'button');
+				btn.setAttribute('target', '_top');
+				btn.setAttribute('rel', 'nofollow noopener noreferrer');
 
 				const iconSpan = document.createElement('span');
 				iconSpan.className = 'sso-google-icon';

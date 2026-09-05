@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-sso-google-extended",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Extended NodeBB Google SSO plugin with primary login placement, modern Google Identity design, and NodeBB v4 support.",
   "main": "library.js",
   "repository": {
